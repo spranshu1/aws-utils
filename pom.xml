@@ -7,10 +7,33 @@
   <groupId>com.github.spranshu1</groupId>
   <artifactId>aws-utils</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-
   <name>aws-utils</name>
+  <url>https://spranshu1.github.io/aws-utils</url>
 
-  <url>http://www.example.com</url>
+  <!-- Lisense -->
+  <licenses>
+    <license>
+      <name>The Apache License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+    </license>
+  </licenses>
+
+  <!-- Developer Information -->
+  <developers>
+    <developer>
+      <name>Pranshu Shrivastava</name>
+      <email>pranshushrivastava20@gmail.com</email>
+      <organization>com.github.spranshu1.aws.utils</organization>
+      <organizationUrl>https://github.com/spranshu1/aws-utils</organizationUrl>
+    </developer>
+  </developers>
+
+  <!-- Source Code Management -->
+  <scm>
+    <connection>scm:git:git://github.com/spranshu1/aws-utils.git</connection>
+    <developerConnection>scm:git:ssh://github.com:spranshu1/aws-utils.git</developerConnection>
+    <url>http://github.com/spranshu1/aws-utils/tree/master</url>
+  </scm>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -48,50 +71,122 @@
       <version>${common.utils.version}</version>
     </dependency>
 
-
   </dependencies>
+
+  <!-- Distribution management for maven centrals -->
+  <distributionManagement>
+    <snapshotRepository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+    </snapshotRepository>
+    <repository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+    </repository>
+  </distributionManagement>
 
   <build>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
-        <!-- clean lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#clean_Lifecycle -->
+        <!-- For managing release - Jgitflow -->
         <plugin>
-          <artifactId>maven-clean-plugin</artifactId>
-          <version>3.1.0</version>
+          <groupId>external.atlassian.jgitflow</groupId>
+          <artifactId>jgitflow-maven-plugin</artifactId>
+          <version>${jgitflow-maven.version}</version>
+          <!-- Workaround - Github just had deprecated weak cryptographic standards -->
+          <dependencies>
+            <dependency>
+              <groupId>com.jcraft</groupId>
+              <artifactId>jsch</artifactId>
+              <version>0.1.54</version>
+            </dependency>
+          </dependencies>
+          <configuration>
+            <flowInitContext>
+              <masterBranchName>master</masterBranchName>
+              <developBranchName>develop</developBranchName>
+              <featureBranchPrefix>feature-</featureBranchPrefix>
+              <releaseBranchPrefix>release-</releaseBranchPrefix>
+              <hotfixBranchPrefix>hotfix-</hotfixBranchPrefix>
+              <versionTagPrefix>version-</versionTagPrefix>
+            </flowInitContext>
+            <autoVersionSubmodules>true</autoVersionSubmodules>
+            <noDeploy>false</noDeploy>
+            <allowUntracked>true</allowUntracked>
+            <scmCommentPrefix>[RELEASE]</scmCommentPrefix>
+          </configuration>
         </plugin>
+
+        <!-- Maven GPG Plugin - Only used in release process -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-gpg-plugin</artifactId>
+          <version>1.4</version>
+          <executions>
+            <execution>
+              <id>sign-artifacts</id>
+              <phase>verify</phase>
+              <goals>
+                <goal>sign</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+
+        <!-- Maven Source Plugin -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-source-plugin</artifactId>
+          <version>2.2.1</version>
+          <executions>
+            <execution>
+              <id>attach-sources</id>
+              <goals>
+                <goal>jar-no-fork</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+        <!-- Maven Javadoc Plugin -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-javadoc-plugin</artifactId>
+          <version>2.9.1</version>
+          <executions>
+            <execution>
+              <id>attach-javadocs</id>
+              <goals>
+                <goal>jar</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+
         <!-- default lifecycle, jar packaging: see https://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_jar_packaging -->
-        <plugin>
-          <artifactId>maven-resources-plugin</artifactId>
-          <version>3.0.2</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-compiler-plugin</artifactId>
-          <version>3.8.0</version>
-        </plugin>
         <plugin>
           <artifactId>maven-surefire-plugin</artifactId>
           <version>2.22.1</version>
         </plugin>
+
         <plugin>
-          <artifactId>maven-jar-plugin</artifactId>
-          <version>3.0.2</version>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>3.5.1</version>
+          <configuration>
+            <source>1.8</source>
+            <target>1.8</target>
+          </configuration>
         </plugin>
+        <!-- Nexus plugin for maven central release -->
         <plugin>
-          <artifactId>maven-install-plugin</artifactId>
-          <version>2.5.2</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-deploy-plugin</artifactId>
-          <version>2.8.2</version>
-        </plugin>
-        <!-- site lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#site_Lifecycle -->
-        <plugin>
-          <artifactId>maven-site-plugin</artifactId>
-          <version>3.7.1</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-project-info-reports-plugin</artifactId>
-          <version>3.0.0</version>
+          <groupId>org.sonatype.plugins</groupId>
+          <artifactId>nexus-staging-maven-plugin</artifactId>
+          <version>1.6.7</version>
+          <extensions>true</extensions>
+          <configuration>
+            <serverId>ossrh</serverId>
+            <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+            <autoReleaseAfterClose>true</autoReleaseAfterClose>
+          </configuration>
         </plugin>
       </plugins>
     </pluginManagement>
