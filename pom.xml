@@ -40,7 +40,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.7</maven.compiler.source>
     <maven.compiler.target>1.7</maven.compiler.target>
-
+    <jgitflow-maven.version>1.0-m5.1</jgitflow-maven.version>
     <aws.sdk.version>1.11.779</aws.sdk.version>
     <common.utils.version>1.0.3</common.utils.version>
 
