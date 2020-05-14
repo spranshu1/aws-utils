@@ -170,7 +170,7 @@ public class SqsQueue {
 	}
 
 	/**
-	 * Set attributes map in the form <Attribute Name, Attribute Value>
+	 * Set attributes map in the form &lt;Attribute Name, Attribute Value&gt;
 	 *
 	 * @param attributes the attributes
 	 */
