@@ -1,3 +1,5 @@
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/4762c5e21ef54031ad97e8cc6deeec3f)](https://www.codacy.com/manual/pranshushrivastava20/aws-utils?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=spranshu1/aws-utils&amp;utm_campaign=Badge_Grade)
+
 ## AWS Utils
 
  A wrapper on top of AWS SDK, contains useful utility and helper classes.
