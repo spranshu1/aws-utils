@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.github.spranshu1</groupId>
   <artifactId>aws-utils</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <name>aws-utils</name>
+  <version>0.0.1</version>
+  <name>AWS Utils</name>
+  <description>A wrapper on top of AWS SDK, contains useful utility and helper classes.</description>
   <url>https://spranshu1.github.io/aws-utils</url>
 
   <!-- Lisense -->
@@ -23,7 +23,7 @@
     <developer>
       <name>Pranshu Shrivastava</name>
       <email>pranshushrivastava20@gmail.com</email>
-      <organization>com.github.spranshu1.aws.utils</organization>
+      <organization>com.github.spranshu1</organization>
       <organizationUrl>https://github.com/spranshu1/aws-utils</organizationUrl>
     </developer>
   </developers>
@@ -39,7 +39,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.7</maven.compiler.source>
     <maven.compiler.target>1.7</maven.compiler.target>
-
+    <jgitflow-maven.version>1.0-m5.1</jgitflow-maven.version>
     <aws.sdk.version>1.11.779</aws.sdk.version>
     <common.utils.version>1.0.3</common.utils.version>
 
