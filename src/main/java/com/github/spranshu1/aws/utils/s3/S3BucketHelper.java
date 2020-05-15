@@ -18,7 +18,6 @@
 package com.github.spranshu1.aws.utils.s3;
 
 import com.amazonaws.AmazonServiceException;
-import com.amazonaws.client.builder.ExecutorFactory;
 import com.amazonaws.regions.Region;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3;
@@ -34,15 +33,14 @@ import java.io.File;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
  * Instance for operating on one bucket with a particular bucketName
  */
-public class S3Bucket {
+public class S3BucketHelper {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(S3Bucket.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(S3BucketHelper.class);
 
 
     private String bucketName;
@@ -55,7 +53,7 @@ public class S3Bucket {
      * @param bucketName the bucket name
      * @param s3client   the s3 client
      */
-    public S3Bucket(String bucketName, AmazonS3 s3client) {
+    public S3BucketHelper(String bucketName, AmazonS3 s3client) {
         this.bucketName = bucketName;
         this.s3client = s3client;
         transferManager = TransferManagerBuilder.standard()
@@ -70,17 +68,12 @@ public class S3Bucket {
      * @param s3client       the s3 client
      * @param threadPoolSize the thread pool size
      */
-    public S3Bucket(final String bucketName, final AmazonS3 s3client, final int threadPoolSize) {
+    public S3BucketHelper(final String bucketName, final AmazonS3 s3client, final int threadPoolSize) {
         this.bucketName = bucketName;
         this.s3client = s3client;
         transferManager = TransferManagerBuilder.standard()
                         .withS3Client(s3client)
-                        .withExecutorFactory(new ExecutorFactory() {
-                            @Override
-                            public ExecutorService newExecutor() {
-                                return Executors.newFixedThreadPool(threadPoolSize);
-                            }
-                        })
+                        .withExecutorFactory(() -> Executors.newFixedThreadPool(threadPoolSize))
                         .build();
     }
 
