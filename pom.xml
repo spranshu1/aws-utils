@@ -5,7 +5,7 @@
 
   <groupId>com.github.spranshu1</groupId>
   <artifactId>aws-utils</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1-SNAPSHOT</version>
   <name>AWS Utils</name>
   <description>A wrapper on top of AWS SDK, contains useful utility and helper classes.</description>
   <url>https://spranshu1.github.io/aws-utils</url>
