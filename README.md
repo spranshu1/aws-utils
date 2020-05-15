@@ -3,7 +3,7 @@
 
  A wrapper on top of AWS SDK, contains useful utility and helper classes. 
  
- You can browse the [javadoc](docs/apidocs/index.html) for more information
+ You can browse the [![javadoc](https://javadoc.io/badge2/com.github.spranshu1/aws-utils/javadoc.svg)](https://javadoc.io/doc/com.github.spranshu1/aws-utils) for more information
 
 ## Target Version
 
