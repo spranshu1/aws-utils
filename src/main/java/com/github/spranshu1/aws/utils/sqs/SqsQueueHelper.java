@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * Send Message to a particular queue with 'queueName' or Receive Message from 'queueName'
  */
-public class SqsQueue {
+public class SqsQueueHelper {
 	private AmazonSQS sqs;
 	private String queueUrl;
 	private int maxMessages;
@@ -39,7 +39,7 @@ public class SqsQueue {
 	 * @param queueUrl the queue url
 	 * @param sqs      the sqs
 	 */
-	public SqsQueue(final String queueUrl, final AmazonSQS sqs) {
+	public SqsQueueHelper(final String queueUrl, final AmazonSQS sqs) {
 		this.sqs = sqs;
 		this.queueUrl = queueUrl;
 		this.maxMessages = 10;

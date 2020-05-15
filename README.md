@@ -5,7 +5,7 @@
 
 ## Target Version
 
-`0.0.1`
+[![Maven Central](https://img.shields.io/maven-central/v/com.github.spranshu1/aws-utils.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22com.github.spranshu1%22%20AND%20a:%22aws-utils%22)
 
 Getting started:
 
@@ -45,6 +45,11 @@ Ensure local installation of following softwares/tools:
 	```
 
 ## Release Log
+
+`1.0.0`
+
+- `IAMHelper` introduced for IAM specific operations
+- Minor BugFix in `S3BucketHelper`   
 	
 `0.0.1`
 
