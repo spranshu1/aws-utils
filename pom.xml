@@ -43,7 +43,7 @@
     <aws.sdk.version>1.11.779</aws.sdk.version>
     <common.utils.version>1.0.3</common.utils.version>
     <jacoco-maven.version>0.8.0</jacoco-maven.version>
-    <junit.version>4.12</junit.version>
+    <junit.version>4.13.1</junit.version>
 
   </properties>
 
